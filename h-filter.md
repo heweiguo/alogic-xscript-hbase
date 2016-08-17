@@ -7,9 +7,9 @@
  (方法名,参数1,参数2;方法名2,参数3,参数4...)
  方法名为api类名，参数为该方法下使用到的参数，具体使用到可以查看hbase api。
  
-## 参数组合有如下：
+## 参数组合
 
- ## 1.列名列值模糊过滤，用一列的值决定这一行的数据是否被过滤。
+### 1、 列名列值模糊过滤，用一列的值决定这一行的数据是否被过滤。
  
        范例:SingleColumnValueFilter,M,name,hwg(类名,列族,列名,查询值)
        
@@ -20,7 +20,7 @@
        
 
 
-### 3、行前缀匹配。.
+### 3、行前缀匹配。
 
        范例:ColumnPrefixFilter,hwg(类名,匹配的列值)
        
@@ -34,13 +34,15 @@
 
        范例:RowFilter,BinaryComparator,hwg(过滤器类名,比较器名,匹配的值)   
        
-        比较器名有：    BinaryComparator(值匹配),
- 		 	RegexStringComparator(正则匹配),
-  		 	SubstringComparator(包含值),
- 			BinaryPrefixComparator(前缀匹配)
+        比较器名有：    
+        BinaryComparator(值匹配)
+ 		RegexStringComparator(正则匹配)
+  		SubstringComparator(包含值)
+ 		BinaryPrefixComparator(前缀匹配)
  		
- ### 源代码	
- 	```java
+ ## 源代码
+ 	
+```java
  	   protected FilterList doFilter() {
         if (StringUtils.isEmpty(filter)) {
             return null;
@@ -92,7 +94,7 @@
         }
         return filterList;
     }
- 	```		
+ ```		
  
 ### 案例
 
