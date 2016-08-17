@@ -7,25 +7,26 @@
  方法名为api类名，参数为该方法下使用到的参数，具体使用到可以查看hbase api。
  
 参数组合有如下：
- 1、列名列值模糊过滤，用一列的值决定这一行的数据是否被过滤。
+ ### 1、列名列值模糊过滤，用一列的值决定这一行的数据是否被过滤。
        范例:SingleColumnValueFilter,M,name,hwg(类名,列族,列名,查询值)
-   ```java
+       
+```java
   	 if (("SingleColumnValueFilter").equals(p[0])) {
         SubstringComparator comp = new SubstringComparator(p[3]);
         SingleColumnValueFilter tfilter = new SingleColumnValueFilter(Bytes.toBytes(p[1]), 				Bytes.toBytes(p[2]), CompareOp.EQUAL, comp);
         tfilter.setFilterIfMissing(true);
         filterList.addFilter(tfilter);
      }
-   ```
-2、 列前缀匹配。
+```
+### 2、 列前缀匹配。
        范例:ColumnPrefixFilter,hwg(类名,匹配的行值)
-    ```java
+```java
   	 if (("ColumnPrefixFilter").equals(p[0])) {
         Filter cpf = new ColumnPrefixFilter(Bytes.toBytes(p[1]));
         filterList.addFilter(cpf);
      }
-   ```
-3、行前缀匹配。
+```
+### 3、行前缀匹配。
        范例:ColumnPrefixFilter,hwg(类名,匹配的列值)
     ```java
   	 if (("ColumnPrefixFilter").equals(p[0])) {
@@ -33,10 +34,10 @@
         filterList.addFilter(cpf);
      }
    ```
-4、行前缀匹配。
+### 4、行前缀匹配。
        范例:PrefixFilter,hwg(类名,匹配的列值)
        
-5、行模糊，正则匹配等。
+### 5、行模糊，正则匹配等。
        范例:RowFilter,BinaryComparator,hwg(过滤器类名,比较器名,匹配的值)   
         比较器名有：    BinaryComparator(值匹配),
  		 	RegexStringComparator(正则匹配),
